@@ -1,0 +1,11 @@
+s = "abcabcbb"
+
+def abc():
+    answer = 0
+    for i in range(len(s)):
+        for j in range(len(s)):
+            if s[i] == s[j] and i!=j:
+                return answer
+            else:
+                answer+=1
+print(abc())

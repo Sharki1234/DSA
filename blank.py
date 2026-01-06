@@ -1,4 +1,4 @@
-nums = [1,2,3,4,5]
+nums = [1,66,7,9,4,5,3]
 n = len(nums)
 for i in range(n):
     flag = False
@@ -8,8 +8,8 @@ for i in range(n):
             other = nums[j]
             nums[j] = nums[j+1]
             nums[j+1] = other
-    # if not flag:
-    #     break
-    print(nums)
+    if not flag:
+        break
+print(nums)
 #print(nums)
 

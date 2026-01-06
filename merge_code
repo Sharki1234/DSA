@@ -1,0 +1,7 @@
+import random
+nums = []
+for i in range(10):
+    nums.append(random.randint(0,50))
+num_list = [random.randint(0,50) for i in range(10)]
+print(num_list)
+print(nums)
