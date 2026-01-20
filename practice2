@@ -3,7 +3,7 @@ def merge(l,mid,r,j,lis):
   extra = []
   while l <= mid  and r <= j:
     
-    print("one",l,r)
+    
     if lis[r]<lis[l]:
       extra.append(lis[r])
       r+=1
@@ -11,16 +11,14 @@ def merge(l,mid,r,j,lis):
       extra.append(lis[l])
       l+=1
   while l <= mid:
-    print("secon")
+    
     extra.append(lis[l])
     l+=1
   while r <= j:
-    print("third")
+   
     extra.append(lis[r])
     r+=1
-  print(extra)
-  for i in range(l,j):
-    nums[i] = extra[i]
+ 
 
   
   

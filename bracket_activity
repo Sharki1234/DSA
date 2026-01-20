@@ -1,0 +1,7 @@
+from stack import Stack
+open = ["(","[","{"]
+closing = [")","]","}"]
+def validity(expression):
+    new_stack = Stack(len(expression))
+    print(new_stack)
+validity("7+5")
