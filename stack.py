@@ -14,6 +14,7 @@ class Stack:
             print("stack is empty")
     def display(self):
         print(self.values)
+
     
 
 #stack rverse  text homework
@@ -51,3 +52,39 @@ s = Stack(100)
 while num>0:
     s.push(num%2)
     num//=2
+#infix to postfix
+equation = "a+b*c"
+
+operations = {
+    "/" : 4,
+    "*" : 3,
+    "+":2,
+    "-":1
+
+}
+operations_stack = Stack(len(equation))
+
+postfix = []
+for i in range(len(equation)):
+    if equation[i] in operations:
+        if len(operations_stack.values)>0:
+            while (len(operations_stack.values) > 0 and operations[equation[i]] <= operations[operations_stack.values[-1]]):
+                postfix.append(operations_stack.values[-1])
+                operations_stack.pushout()
+            operations_stack.push(equation[i])
+            
+    else:
+        postfix.append(equation[i])
+    
+for i in range(len(operations_stack.values)):
+    postfix.append(operations_stack.values[-1])
+    operations_stack.pushout()
+
+
+       
+
+
+
+print(postfix)
+
+

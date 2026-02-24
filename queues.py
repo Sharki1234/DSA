@@ -18,12 +18,12 @@ class Queue:
         else:
             print("queue underflow")
 
-q = Queue(12)
-for i in range(12):
-    q.enqueue(random.randint(1,10))
-    print(q.rear,"rear")
-print(q.queue)
-for i in range(5):
-    q.dequeue()
-    print(q.front,"front")
+docs = Queue(3)
+for i in range(3):
+    doc = input("jkajks")
+    docs.enqueue(doc)
+for j in range(3):
+    print(docs.queue[j],"is printing")
+    docs.dequeue()
+
 
