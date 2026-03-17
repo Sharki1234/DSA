@@ -1,13 +1,16 @@
-num = 9
+height = [1,2]
+#first get the largest value
+max = 0
+index = 0
+for i in range(len(height)):
+    if height[i]>max:
+        max = height[i]
+        index = i
 
-def power_of_3(value):
-    if value == 1:
-        return True
-    if value%3 == 0 and value != 0:
-        return(power_of_3(value/3))
-    return False
-print(power_of_3(num))
 
-   
-
+for j in range(len(height)):
+    value = ((j-(index))*height[j])
     
+    if value>max and j!=index:
+        max = value
+print(max)
