@@ -1,16 +1,33 @@
-height = [1,2]
-#first get the largest value
-max = 0
-index = 0
-for i in range(len(height)):
-    if height[i]>max:
-        max = height[i]
-        index = i
+class MinStack(object):
+
+    def __init__(self):
+        self.values = []
+
+    def push(self, val):
+        self.values.append(val)
+        
+
+    def pop(self):
+        self.values.pop()
+        
+
+    def top(self):
+        return self.values[-1]
+        
+
+    def getMin(self):
+        return(min(self.values))
+        
 
 
-for j in range(len(height)):
-    value = ((j-(index))*height[j])
-    
-    if value>max and j!=index:
-        max = value
-print(max)
+
+obj = MinStack()
+obj.push(5)
+obj.push(7)
+obj.push(9)
+obj.pop()
+param_3 = obj.top()
+param_4 = obj.getMin()
+print(param_3)
+print(param_4)
+print(obj.values)

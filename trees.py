@@ -13,12 +13,7 @@ def inorder_t(root):#LRooR
     if root.right != None:
         inorder_t(root.right)
 
-def inorder_successor(root):
-    if root.right == None and root.left == None:
-        return root
-    elif root.right != None:
-        return inorder_successor(root.left)
-    return(root.left)
+
 
 def insert(root,num):
     if root == None:
@@ -57,38 +52,6 @@ def even_numbers(root):
         print(root.value)
     if root.right != None:
         even_numbers(root.right)
-def delete(root,value):
-    if root == None:
-        
-        return None
-    if root.value>value:
-        root.left =  delete(root.left,value)
-        
-    elif root.value<value:
-        root.right =  delete(root.right,value)
-        
-    else:
-        if root.left == None and root.right == None:
-             root.value = None
-             
-        if root.left == None :
-            other = root.left
-            root = None
-            
-            return other
-            
-        elif root.right and root.left == None:
-            other = root.right
-            root = None
-           
-            return other
-        else:
-            
-            temp = inorder_successor(root.right)
-            num = root.value
-            root.value = temp.value
-            temp.value = num
-            root.right = delete(root.right,temp.value)
             
 def delete_leaf(root,value):
     if root.value == value and root.left == None and root.right == None:
@@ -118,31 +81,56 @@ def delete_1c(root,value):
     else:
         return False
     
-def replace(root):
-    successor = inorder_successor(root.right)
-    root.value = successor.value
-    return root
-def delete_try(root,value):
-    if root.value == value:
-        if root.left == None and root.right == None:
-            root.value = None
-            return
-        elif root.left == None and root.right != None:
-            root.value = root.right.value
-            root.right.value = None
-            return 
-        elif root.right == None and root.left != None:
-            root.value = root.left.value
-            root.left.value = None
-            return 
-        else:
-            replace(root)
+
+def replace_2(root):
+    if root.left == None and root.right == None:
+        root.value = None
+        return
     else:
-        if root.value>value:
-           return delete_try(root.left,value)
-        elif root.value<value:
-            return delete_try(root.right,value)
-    return False
+        if root.right!= None and root.left == None:
+            other= root.right.value
+            root.value = other
+            replace_2(root.right)
+        elif root.right== None and root.left != None:
+            other= root.left.value
+            root.value = other
+            replace_2(root.left)
+        else:
+            inorder_s = inorder_successor(root.right)
+            other = inorder_s.value
+            root.value = other
+            replace_2(inorder_s)
+            
+   
+def inorder_successor(root):
+    current = root
+    while current.left!= None:
+        current= current.left
+    return current
+
+def delete(root,value):
+    if root is None:
+       return None
+    if root.value>value:
+       root.left = delete(root.left,value)
+    elif root.value<value:
+        root.right = delete(root.right,value)
+    else:
+        if root.left == None and root.right == None:
+            return None
+        elif root.left is None:
+            root.value = root.right.value
+            return root.right
+        elif root.right is None:
+           root.value = root.left.value
+           return root.left
+        else:
+            inorder_s = inorder_successor(root.right)
+            root.value = inorder_s.value
+            delete(root.right,inorder_s.value)
+    return root
+           
+            
         
 
 tree = Tree(17)
@@ -152,7 +140,10 @@ tree.left.left = Tree(12)
 tree.left.right = Tree(15)
 tree.right.right = Tree(20)
 tree.right.left = Tree(18)
-print(inorder_successor(tree.right).value)
+delete(tree,17)
+inorder_t(tree)
+#(inorder_successor(tree.left).value)
+#print(inorder_successor(tree.right).value)
 
 
 
