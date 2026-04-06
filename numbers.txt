@@ -1,0 +1,12 @@
+# Open the file in read mode
+with open ("numbers.txt","a") as f:
+    f.write("1 82937")
+
+with open("numbers.txt", "r") as file:
+# Read all lines from the file
+    lines = file.readlines()
+
+# Extract numbers and convert them to integers
+numbers = [int(word) for line in lines for word in line.split() if word.isdigit()]
+
+print(numbers) 1 82937
