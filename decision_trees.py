@@ -108,4 +108,4 @@ height = [13,25,12,11,19]
 classes = ["A","B","A","C","A"]
 tree = decision_tree()
 root = tree.build(height,classes)
-print(predict(root,12))
+print(predict(root,12.5))
