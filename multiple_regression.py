@@ -8,7 +8,7 @@ c = 0
 
 learningrate = 0.0001
 average_error = 1
-threshold = 0.00001
+threshold = 0.000000000001
 
 while average_error>threshold:
     total_error = 0
@@ -26,4 +26,6 @@ while average_error>threshold:
     m2-=learningrate*dm2/len(x1)
     c-=learningrate*dc/len(x1)
     average_error = total_error/len(x1)
-print(m1,m2,c)
+features = (5,9)
+prediction_y = (m1*features[0])+(m2*features[1])+c
+print(prediction_y)
