@@ -12,23 +12,49 @@ class Graph:
         queue = []
         queue.append(source)
         while len(queue) >0:
-            s = queue.pop()
-            result.append(s)
+            s = queue.pop(0)
+            result.append(s+1)
             visited[source] = True
             for num in self.adj_list[s]:
                 if visited[num] == False:
                     queue.append(num)
                     visited[num] = True
         return result
-    def count_neighbours(self,node):
-        return len(self.adj_list[node-1])
+    def utiliser(self,source,visited,result):
+        result.append(source+1)
+        visited[source] = True
+        for node in self.adj_list[source]:
+            if not visited[node]:
+                self.utiliser(node,visited,result)
+
+    def dfs2(self,source,visited):
+        if source not in visited:
+            print(source)
+
+            visited.append(source)
+        for node in self.adj_list[source]:
+            if node not in visited:
+                self.dfs2(node,visited)
+        
+
+    def dfs(self,source):
+        result = []
+        visited = [False]*self.n
+        self.utiliser(source-1,visited,result)
+        return result
+        
 
 
 g = Graph(6)
 g.add_edge(3,5)
 g.add_edge(4,3)
 g.add_edge(5,6)
-print(g.bfs(3))
-print(g.count_neighbours(3))
-print(g.adj_list)
+g.add_edge(2,6)
+g.add_edge(1,4)
+#print(g.bfs(3))
+g.dfs2(3,[])
+#print(g.dfs(3))
+
+
+
 
