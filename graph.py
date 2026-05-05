@@ -27,24 +27,31 @@ class Graph:
             if not visited[node]:
                 self.utiliser(node,visited,result)
 
-    def dfs2(self,source,visited):
-        if source not in visited:
-            print(source)
+    # def dfs2(self,source,visited):
+    #     if source not in visited:
+    #         print(source)
 
-            visited.append(source)
-        for node in self.adj_list[source]:
-            if node not in visited:
-                self.dfs2(node,visited)
+    #         visited.append(source)
+    #     for node in self.adj_list[source]:
+    #         if node not in visited:
+    #             self.dfs2(node,visited)
         
 
     def dfs(self,source):
         result = []
-        visited = [False]*self.n
-        self.utiliser(source-1,visited,result)
+        self.visited = [False]*self.n
+        self.utiliser(source-1,self.visited,result)
         return result
+    def count(self):
+        included = []
+        for n in self.adj_list:
+            for i in n:
+                if i not in included:
+                    included.append(i)
+        for j in range(len(self.adj_list)):
+            if j not in included:
+                print(j+1)
         
-
-
 g = Graph(6)
 g.add_edge(3,5)
 g.add_edge(4,3)
@@ -52,7 +59,9 @@ g.add_edge(5,6)
 g.add_edge(2,6)
 g.add_edge(1,4)
 #print(g.bfs(3))
-g.dfs2(3,[])
+print(g.dfs(3))
+g.count()
+
 #print(g.dfs(3))
 
 
